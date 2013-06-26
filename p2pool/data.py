@@ -159,7 +159,7 @@ class NewShare(object):
             assert base_subsidy is not None
             share_data = dict(share_data, subsidy=base_subsidy + definite_fees)
         
-        weights, total_weight, donation_weight = tracker.get_cumulative_weights(share_data['previous_share_hash'],
+        weights, total_weight, donation_weight = tracker.get_cumulative_weights(previous_share.share_data['previous_share_hash'] if previous_share is not None else None,
             min(height, net.REAL_CHAIN_LENGTH),
             65535*net.SPREAD*bitcoin_data.target_to_average_attempts(block_target),
         )
